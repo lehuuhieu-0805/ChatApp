@@ -43,7 +43,12 @@ function App() {
             .catch((error) => console.log(error));
     };
 
-    return <>{!connection ? <Lobby JoinRoom={JoinRoom} /> : <Chat SendMessage={SendMessage} HandleDisconnect={HandleDisconnect} />}</>;
+    return (
+        <>
+            <h1 style={{ textAlign: 'center', margin: 20 }}>ChatApp</h1>
+            {!connection ? <Lobby JoinRoom={JoinRoom} /> : <Chat SendMessage={SendMessage} HandleDisconnect={HandleDisconnect} />}
+        </>
+    );
 }
 
 export default App;
