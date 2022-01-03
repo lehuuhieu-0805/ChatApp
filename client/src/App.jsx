@@ -28,6 +28,9 @@ function App() {
             let li = document.createElement('li');
             document.getElementById('messagesList').appendChild(li);
             li.textContent = `${user} - ${message}`;
+
+            let scroll = document.getElementById('messagesList');
+            scroll.scrollTop = scroll.scrollHeight;
         });
 
         connection.on('UserInRoom', (user) => {

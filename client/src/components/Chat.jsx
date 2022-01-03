@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 function Chat({ SendMessage, HandleDisconnect, listUser }) {
     const [message, setMessage] = useState('');
-    console.log(listUser);
 
     return (
         <div className="container">
