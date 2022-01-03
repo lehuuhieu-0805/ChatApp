@@ -6,6 +6,7 @@ import Lobby from './components/Lobby';
 
 function App() {
     const [connection, setConnection] = useState(null);
+    const [listUser, setListUser] = useState([]);
 
     const SendMessage = (message) => {
         connection.invoke('SendMessage', { message }).catch((error) => console.log('send message: ', error));
@@ -30,7 +31,7 @@ function App() {
         });
 
         connection.on('UserInRoom', (user) => {
-            console.log(user);
+            setListUser(user, ...listUser);
         });
 
         await connection.invoke('JoinRoom', { username, roomId });
@@ -46,7 +47,7 @@ function App() {
     return (
         <>
             <h1 style={{ textAlign: 'center', margin: 20 }}>ChatApp</h1>
-            {!connection ? <Lobby JoinRoom={JoinRoom} /> : <Chat SendMessage={SendMessage} HandleDisconnect={HandleDisconnect} />}
+            {!connection ? <Lobby JoinRoom={JoinRoom} /> : <Chat SendMessage={SendMessage} HandleDisconnect={HandleDisconnect} listUser={listUser} />}
         </>
     );
 }
